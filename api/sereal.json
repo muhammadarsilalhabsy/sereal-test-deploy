@@ -1,0 +1,1982 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "SEREAL APP",
+    "version": "1.0",
+    "description": "OpenAPI for Sereal RestFul API",
+    "contact": {
+      "name": "sereal.inc",
+      "email": "sereal@gmail.com"
+    },
+    "license": {
+      "name": "APACHE 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.sereal.test/api/v1",
+      "description": "Sereal RestFul API Server"
+    }
+  ],
+  "paths": {
+    "/challenge": {
+      "get": {
+        "tags": [
+          "Challenge"
+        ],
+        "summary": "Mengambil semua challenge",
+        "description": "Secara default akan menampilkan seluruh challenge yang ada",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetChallenge2"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mendapatkan semua challenge",
+                    "value": [
+                      {
+                        "id": "1",
+                        "title": "Dasar Melukis Dengan Tema HUT RI",
+                        "description": "Pada kelas ini kamu akan belajar dimulai dari pengenalan tentang melukis, alat dan bahan apa saja yang harus disiapkan dan seperti apa teknik dasar menggunakan kuas. Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.",
+                        "requirement": "Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.Peserta membuat lukisan dengan tema “HUT RI ke-77” dengan requirement:",
+                        "content": {
+                          "image": "http://link_img",
+                          "video": "http://link_video"
+                        },
+                        "categories": [
+                          "Melukis",
+                          "Digital Art"
+                        ],
+                        "status": true
+                      },
+                      {
+                        "id": "2",
+                        "title": "Example title",
+                        "description": "example description",
+                        "requirement": "example requirement",
+                        "content": {
+                          "image": "http://examplelinkimage",
+                          "video": "http://examplelinkvideo"
+                        },
+                        "categories": [
+                          "Melukis",
+                          "Digital Art"
+                        ],
+                        "status": true
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Challenge"
+        ],
+        "summary": "Membuat Challenge",
+        "description": "Mengirim/membuat data challenge dari request body ke database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/schemaGetChallenge"
+              },
+              "example": {
+                "title": "Dasar Melukis Dengan Tema HUT RI",
+                "description": "Pada kelas ini kamu akan belajar dimulai dari pengenalan tentang melukis, alat dan bahan apa saja yang harus disiapkan dan seperti apa teknik dasar menggunakan kuas. Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.",
+                "requirement": "Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.Peserta membuat lukisan dengan tema “HUT RI ke-77” dengan requirement:",
+                "content": {
+                  "image": "http://link_img",
+                  "video": "http://link_video"
+                },
+                "categories": [
+                  "Melukis",
+                  "Digital Art"
+                ],
+                "status": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil membuat challenge baru",
+                    "value": {
+                      "massage": "Success create new challenge",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      }
+    },
+    "/challenge/{challengeId}": {
+      "get": {
+        "tags": [
+          "Challenge"
+        ],
+        "summary": "Mengambil challenge dengan parameter id",
+        "description": "Mengambil challenge yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id challange disini untuk get",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_637xxx": {
+                "value": "637xxx",
+                "description": "Mengambil Challange dengan id 637xxx"
+              },
+              "id_357xxx": {
+                "value": "357xxx",
+                "description": "Mengambil Challange dengan id 357xxx"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetChallenge2"
+                },
+                "examples": {
+                  "id_637xxx": {
+                    "description": "Berhasil mendapatkan data dengan id 637xxx",
+                    "value": [
+                      {
+                        "id": "637xxx",
+                        "title": "Dasar Melukis Dengan Tema HUT RI",
+                        "description": "Pada kelas ini kamu akan belajar dimulai dari pengenalan tentang melukis, alat dan bahan apa saja yang harus disiapkan dan seperti apa teknik dasar menggunakan kuas. Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.",
+                        "requirement": "Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.Peserta membuat lukisan dengan tema “HUT RI ke-77” dengan requirement:",
+                        "content": {
+                          "image": "http://link_img",
+                          "video": "http://link_video"
+                        },
+                        "categories": [
+                          "Melukis",
+                          "Digital Art"
+                        ],
+                        "status": true
+                      }
+                    ]
+                  },
+                  "id_357xxx": {
+                    "description": "Berhasil mendapatkan data dengan id 357xxx",
+                    "value": [
+                      {
+                        "id": "357xxx",
+                        "title": "Example title",
+                        "description": "example description",
+                        "requirement": "example requirement",
+                        "content": {
+                          "image": "http://link_img",
+                          "video": "http://link_video"
+                        },
+                        "categories": [
+                          "Melukis",
+                          "Digital Art"
+                        ],
+                        "status": true
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          },
+          "400": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Challenge"
+        ],
+        "summary": "Mengupdate challenge yang sudah ada",
+        "description": "Mengupdate challenge yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/schemaGetChallenge"
+              },
+              "examples": {
+                "title": {
+                  "description": "Mengupdate title challenge",
+                  "value": {
+                    "title": "Tuangkan Kreatifitasmu Di Moment Kebangsaan"
+                  }
+                },
+                "status": {
+                  "description": "Mengupdate status challenge",
+                  "value": {
+                    "status": true
+                  }
+                },
+                "categories": {
+                  "description": "Mengupdate categories challenge",
+                  "value": {
+                    "categories": [
+                      "637xxx"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id challange di sini untuk update",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_637xxx": {
+                "value": "637xxx",
+                "description": "Mengupdate Challange dengan id 637xxx"
+              },
+              "id_46fxxx": {
+                "value": "46fxxx",
+                "description": "Mengupdate Challange dengan id 46fxxx"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mengupdate/modifikasi data dengan id XXXxxx",
+                    "value": {
+                      "massage": "Success modify Challenge",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "failed": {
+                    "description": "Challenge doesn't exist or server error",
+                    "value": {
+                      "massage": "Server Error",
+                      "error": "Cast to ObjectId failed for value"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Challenge"
+        ],
+        "summary": "Menghapus challenge",
+        "description": "Menghapus challenge yang ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id challange disini untuk delete",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil menghapusata dengan id XXXxxx",
+                    "value": {
+                      "massage": "Success deleted challenge",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      }
+    },
+    "/gallery": {
+      "get": {
+        "tags": [
+          "Gallery"
+        ],
+        "summary": "Mengambil semua gallery",
+        "description": "Secara default akan menampilkan seluruh gallery yang ada",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mendapatkan semua gallery",
+                    "value": {
+                      "message": "Success get all gallery",
+                      "data": [
+                        {
+                          "id": "678xxx",
+                          "title": "Seni adalah ledakan",
+                          "author": "deidara",
+                          "description": "ledakan dalah seni",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id_xxxXXX",
+                            "id__zzzXXX"
+                          ],
+                          "status": true
+                        },
+                        {
+                          "id": "993xxx",
+                          "title": "contoh judul seni",
+                          "author": "contoh nama kreator",
+                          "description": "contoh deskripsi tentang seni yang diciptakan",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id_xxxYYY",
+                            "id__VVVXXX"
+                          ],
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gallery"
+        ],
+        "summary": "Membuat gallery",
+        "description": "Mengirim/membuat data gallery dari request body ke database",
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil membuat gallery baru",
+                    "value": {
+                      "message": "Gallery has been created",
+                      "data": [
+                        {
+                          "id": "218xxx",
+                          "title": "Seni adalah ledakan",
+                          "author": "deidara",
+                          "description": "ledakan dalah seni",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id_xxxXXX",
+                            "id__zzzXXX"
+                          ],
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      }
+    },
+    "/gallery/{galleryId}": {
+      "get": {
+        "tags": [
+          "Gallery"
+        ],
+        "summary": "Mengambil gallery dengan parameter id",
+        "description": "Mengambil gallery yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "galleryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id gallery disini untuk get",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_678xxx": {
+                "value": "678xxx",
+                "description": "Menampilkan data gallery dengan id 678xxx"
+              },
+              "id_218xx": {
+                "value": "218xx",
+                "description": "Menampilkan data gallery dengan id 218xxx"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success id_678xxx": {
+                    "description": "Berhasil mendapatkan data dengan id 678xxx",
+                    "value": {
+                      "message": "Get user with id 678xxx success",
+                      "data": [
+                        {
+                          "id": "678xx",
+                          "title": "Seni adalah ledakan",
+                          "author": "deidara",
+                          "description": "ledakan dalah seni",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id1",
+                            "id2"
+                          ],
+                          "status": true
+                        }
+                      ]
+                    }
+                  },
+                  "success id_218xx": {
+                    "description": "Berhasil mendapatkan data dengan id 218xxx",
+                    "value": {
+                      "message": "Get user with id 218xxx success",
+                      "data": [
+                        {
+                          "id": "218xxx",
+                          "title": "contoh judul seni",
+                          "author": "contoh nama kreator",
+                          "description": "contoh deskripsi tentang seni yang diciptakan",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id3",
+                            "id4"
+                          ],
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Gallery"
+        ],
+        "summary": "Mengupdate gallery yang sudah ada",
+        "description": "Mengupdate gallery yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "galleryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id gallery di sini",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_XXXxx": {
+                "value": "XXXxx",
+                "description": "Mengupdate gallery dengan id XXXxx"
+              },
+              "id_zzzZZZ": {
+                "value": "zzzZZZ",
+                "description": "Mengupdate gallery dengan id zzzZZZ"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 10,
+                    "nullable": false
+                  },
+                  "author": {
+                    "type": "string",
+                    "minLength": 3,
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 10,
+                    "nullable": false
+                  },
+                  "content": {
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      },
+                      "video": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "categories": {
+                    "type": "array",
+                    "nullable": false,
+                    "items": {
+                      "type": "string",
+                      "ref": "Categories"
+                    }
+                  },
+                  "status": {
+                    "type": "boolean",
+                    "default": "false"
+                  }
+                }
+              },
+              "examples": {
+                "title": {
+                  "description": "Mengupdate title gallery",
+                  "value": {
+                    "title": "contoh titel baru"
+                  }
+                },
+                "status": {
+                  "description": "Mengupdate status gallery",
+                  "value": {
+                    "status": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mengupdate/modifikasi data dengan id XXXxxx",
+                    "value": {
+                      "message": "Success update gallery",
+                      "data": [
+                        {
+                          "title": "contoh titel baru",
+                          "author": "deidara",
+                          "description": "ledakan dalah seni",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "categories": [
+                            "id1",
+                            "id2"
+                          ],
+                          "status": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Gallery"
+        ],
+        "summary": "Menghapus gallery",
+        "description": "Menghapus gallery yang ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "galleryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id gallery di sini untuk delete",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil menghapus gallery dengan id ..",
+                    "value": {
+                      "massage": "Berhasil menghapus gallery",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      }
+    },
+    "/materi": {
+      "get": {
+        "tags": [
+          "Materi"
+        ],
+        "summary": "Mengambil semua materi",
+        "description": "Akan menampilkan seluruh materi yang ada secara defalut",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetMateri"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Sukses mendapatkan seluruh data materi dari database",
+                    "value": {
+                      "message": "Success get all materi",
+                      "data": [
+                        {
+                          "id": "1",
+                          "judul": "Pendahuluan",
+                          "isi": "banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k67abxxx",
+                          "status": true
+                        },
+                        {
+                          "id": "2",
+                          "title": "contoh judul materi",
+                          "isi": "contoh isi materi yang banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k77abxxx",
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Materi"
+        ],
+        "summary": "Membuat materi",
+        "description": "Akan mengirim data materi dari request body ke database",
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetMateri"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Sukses mendapatkan seluruh data materi di database",
+                    "value": {
+                      "message": "Gallery has been created",
+                      "data": [
+                        {
+                          "id": "3",
+                          "title": "contoh judul materi 3",
+                          "isi": "contoh isi materi yang banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k797abxxx",
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      }
+    },
+    "/materi/{materiId}": {
+      "get": {
+        "tags": [
+          "Materi"
+        ],
+        "summary": "Mengambil data dengan parameter id",
+        "description": "Mengambil materi yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "materiId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id materi disini untuk get",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_xxxXX": {
+                "value": "xxxXXX",
+                "description": "Menampilkan data materi dengan id xxxXXX"
+              },
+              "id_2": {
+                "value": "zzzZZZ",
+                "description": "Menampilkan data materi dengan id zzzZZZ"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetMateri"
+                },
+                "examples": {
+                  "success id_xxxXXX": {
+                    "description": "Berhasil mendapatkan data dengan id xxxXXX",
+                    "value": {
+                      "message": "Get materi with id xxxXXX success",
+                      "data": [
+                        {
+                          "id": "xxxXXX",
+                          "judul": "Pendahuluan",
+                          "isi": "banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k67abxxx",
+                          "status": true
+                        }
+                      ]
+                    }
+                  },
+                  "success id_zzzZZZ": {
+                    "description": "Berhasil mendapatkan data dengan id zzzZZZ",
+                    "value": {
+                      "message": "Get materi with id zzzZZZ success",
+                      "data": [
+                        {
+                          "id": "zzzZZZ",
+                          "judul": "tools dan alat",
+                          "isi": "banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k67abxxx",
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Materi"
+        ],
+        "summary": "Mengupdate materi yang sudah ada",
+        "description": "Mengupdate challenge yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "galleryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id materi di sini",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_1": {
+                "value": "63746fb021c7711aa6b0ef99",
+                "description": "Mengupdate materi dengan id 1"
+              },
+              "id_2": {
+                "value": "63746fc121c7711aa6b0ef9b",
+                "description": "Mengupdate materi dengan id 2"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "judul": {
+                    "type": "string",
+                    "minLength": 10,
+                    "nullable": false
+                  },
+                  "isi": {
+                    "type": "string",
+                    "minLength": 3,
+                    "nullable": false
+                  },
+                  "content": {
+                    "type": "object",
+                    "properties": {
+                      "image": {
+                        "type": "string"
+                      },
+                      "video": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "boolean",
+                    "default": "false"
+                  },
+                  "kelas": {
+                    "type": "string",
+                    "uniqueItems": true
+                  }
+                }
+              },
+              "examples": {
+                "judul": {
+                  "description": "Mengupdate judul materi",
+                  "value": {
+                    "judul": "contoh materi dengan judul baru"
+                  }
+                },
+                "status": {
+                  "description": "Mengupdate status materi",
+                  "value": {
+                    "status": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mengupdate/modifikasi data dengan id XXXxxx",
+                    "value": {
+                      "message": "Success update materi",
+                      "data": [
+                        {
+                          "id": "1",
+                          "judul": "Contoh materi dengan judul baru",
+                          "isi": "banyak",
+                          "content": {
+                            "image": "http://link_img",
+                            "video": "http://link_video"
+                          },
+                          "kelas": "k67abxxx",
+                          "status": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Materi"
+        ],
+        "summary": "Menghapus materi",
+        "description": "Menghapus materi yang ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "materiId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id materi di sini untuk delete",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil menghapus materi dengan id xxx",
+                    "value": {
+                      "massage": "Berhasil menghapus materi",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Mengambil semua category",
+        "description": "Secara default akan menampilkan seluruh category yang ada",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetCategories"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mendapatkan semua category",
+                    "value": {
+                      "message": "Success get all category",
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "Digital art"
+                        },
+                        {
+                          "id": "2",
+                          "name": "Melukis"
+                        },
+                        {
+                          "id": "3",
+                          "name": "Menari"
+                        },
+                        {
+                          "id": "4",
+                          "name": "Teater"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Membuat category",
+        "description": "Mengirim/membuat data categories dari request body ke database",
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetCategories"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil membuat challenge baru",
+                    "value": {
+                      "message": "Gallery has been created",
+                      "data": [
+                        {
+                          "id": "5",
+                          "name": "Kungfu"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      }
+    },
+    "/categories/{categoriesId}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Mengambil category yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "description": "Mengambil category yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id category disini untuk get",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_4": {
+                "value": "4",
+                "description": "Menampilkan data category dengan id 4"
+              },
+              "id_5": {
+                "value": "5",
+                "description": "Menampilkan data category dengan id 5"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetCategories"
+                },
+                "examples": {
+                  "success id_4": {
+                    "description": "Sukses mendapatkan data category di database dengan menggunakann id",
+                    "value": {
+                      "message": "Get category with id 4 success",
+                      "data": [
+                        {
+                          "id": "4",
+                          "name": "Teater"
+                        }
+                      ]
+                    }
+                  },
+                  "success id_5": {
+                    "description": "Sukses mendapatkan data category di database dengan menggunakann id",
+                    "value": {
+                      "message": "Get category with id 5 success",
+                      "data": [
+                        {
+                          "id": "5",
+                          "name": "Kungfu"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Mengupdate data yang sudah ada",
+        "description": "Mengupdate challenge yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id category disini",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_1": {
+                "value": "1",
+                "description": "Mengupdate category dengan id 1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/schemaGetCategories"
+              },
+              "examples": {
+                "nama": {
+                  "description": "modify name in database",
+                  "value": {
+                    "nama": "Seni Patung"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Sukses mendapatkan data gallery di database dengan menggunakann id",
+                    "value": {
+                      "message": "Success update category",
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "Seni Patung"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Menghapus category",
+        "description": "Menghapus data category di database",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id category di sini",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil menghapus category dengan id ..",
+                    "value": {
+                      "massage": "Berhasil menghapus category",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      }
+    },
+    "/kelas": {
+      "get": {
+        "tags": [
+          "Kelas"
+        ],
+        "summary": "Mengambil semua kelas",
+        "description": "Secara default akan menampilkan seluruh kelas yang ada",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetKelas"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil mendapatkan semua kelas",
+                    "value": {
+                      "message": "Success get all kelas",
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "Dasar melukis",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": true
+                        },
+                        {
+                          "id": "2",
+                          "name": "Melukis Potrait",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": true
+                        },
+                        {
+                          "id": "3",
+                          "name": "Gimp dasar",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": true
+                        },
+                        {
+                          "id": "4",
+                          "name": "Gimp lanjut",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Kelas"
+        ],
+        "summary": "Membuat kelas",
+        "description": "Mengirim/membuat data categories dari request body ke database",
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetKelas"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil membuat challenge baru",
+                    "value": {
+                      "message": "Kelas has been created",
+                      "data": [
+                        {
+                          "id": "5",
+                          "name": "Inkscape dasar",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      }
+    },
+    "/kelas/{kelasId}": {
+      "get": {
+        "tags": [
+          "Kelas"
+        ],
+        "summary": "Mengambil kelas yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "description": "Mengambil kelas yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "kelasId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id kelas disini untuk get",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_4": {
+                "value": "4",
+                "description": "Menampilkan data kelas dengan id 4"
+              },
+              "id_5": {
+                "value": "5",
+                "description": "Menampilkan data kelas dengan id 5"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetKelas"
+                },
+                "examples": {
+                  "success id_4": {
+                    "description": "Sukses mendapatkan data kelas di database dengan menggunakann id",
+                    "value": {
+                      "message": "Get kelas with id 4 success",
+                      "data": [
+                        {
+                          "id": "4",
+                          "name": "Gimp lanjut",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": false
+                        }
+                      ]
+                    }
+                  },
+                  "success id_5": {
+                    "description": "Sukses mendapatkan data kelas di database dengan menggunakann id",
+                    "value": {
+                      "message": "Get kelas with id 5 success",
+                      "data": [
+                        {
+                          "id": "5",
+                          "name": "Inkscape dasar",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Kelas"
+        ],
+        "summary": "Mengupdate data yang sudah ada",
+        "description": "Mengupdate kelas yang sudah ditambahkan atau sudah ada sebelumnya di database",
+        "parameters": [
+          {
+            "name": "kelasId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahan id kelas disini untuk update",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "examples": {
+              "id_1": {
+                "value": "1",
+                "description": "Mengupdate kelas dengan id 1"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/schemaGetKelas"
+              },
+              "examples": {
+                "nama": {
+                  "description": "modify name in database",
+                  "value": {
+                    "nama": "UI/UX design"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaGetGallery"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Sukses mendapatkan data gallery di database dengan menggunakann id",
+                    "value": {
+                      "message": "Success update kelas",
+                      "data": [
+                        {
+                          "id": "1",
+                          "name": "UI/UX design",
+                          "categories": [
+                            "cXXXxx",
+                            "cyyyYY"
+                          ],
+                          "status": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/GeneralResError500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Kelas"
+        ],
+        "summary": "Menghapus kelas",
+        "description": "Menghapus data kelas di database",
+        "parameters": [
+          {
+            "name": "kelasId",
+            "in": "path",
+            "required": true,
+            "description": "Tambahkan id kelas di sini",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemaResponseMassage"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Berhasil menghapus kelas dengan id ..",
+                    "value": {
+                      "massage": "Berhasil menghapus kelas",
+                      "status": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/resError404"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "schemaGetChallenge": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 10
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 10
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string"
+              },
+              "video": {
+                "type": "string"
+              }
+            }
+          },
+          "categories": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "status": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "schemaResponseMassage": {
+        "type": "object",
+        "properties": {
+          "massage": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        }
+      },
+      "schemaGetChallenge2": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "requirement": {
+              "type": "string"
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "image": {
+                  "type": "string"
+                },
+                "video": {
+                  "type": "string"
+                }
+              }
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "schemaGetGallery": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 10,
+                  "nullable": false
+                },
+                "author": {
+                  "type": "string",
+                  "minLength": 3,
+                  "nullable": false
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 10,
+                  "nullable": false
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string"
+                    },
+                    "video": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "categories": {
+                  "type": "array",
+                  "nullable": false,
+                  "items": {
+                    "type": "string",
+                    "ref": "Categories"
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "default": "false"
+                }
+              }
+            }
+          }
+        }
+      },
+      "schemaGetMateri": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "judul": {
+                  "type": "string",
+                  "minLength": 10,
+                  "nullable": false
+                },
+                "isi": {
+                  "type": "string",
+                  "minLength": 3,
+                  "nullable": false
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "image": {
+                      "type": "string"
+                    },
+                    "video": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "default": "false"
+                },
+                "kelas": {
+                  "type": "string",
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "schemaGetCategories": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nama": {
+                  "type": "string",
+                  "nullable": false,
+                  "minLength": 3
+                }
+              }
+            }
+          }
+        }
+      },
+      "schemaGetKelas": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nama": {
+                  "type": "string",
+                  "nullable": false,
+                  "minLength": 3
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "uniqueItems": true
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "default": false,
+                  "nullable": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "resError404": {
+        "description": "Not Found ",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/schemaResponseMassage"
+            },
+            "examples": {
+              "failed": {
+                "description": "Data id doesn't exist",
+                "value": {
+                  "massage": "Data doesn't exist!",
+                  "status": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "GeneralResError500": {
+        "description": "Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "error": {
+                  "type": "string"
+                }
+              }
+            },
+            "examples": {
+              "failed": {
+                "description": "Server Error",
+                "value": {
+                  "message": "Server Error",
+                  "error": "Pesan error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

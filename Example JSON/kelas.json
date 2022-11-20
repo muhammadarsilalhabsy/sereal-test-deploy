@@ -1,0 +1,27 @@
+{
+  "title": "Dasar Melukis",
+  "description": "Pada kelas ini kamu akan belajar dimulai dari pengenalan tentang melukis, alat dan bahan apa saja yang harus disiapkan dan seperti apa teknik dasar menggunakan kuas. Di akhir kelas kamu diharapkan bisa membuat lukisan sesuai dengan kreativitasmu.",
+  "content": [
+    "link_img",
+    "link_vidoe"
+  ],
+  "kurikulum": {
+    "Pendahuluan": [
+      {
+        "Apa itu seni lukis": "Pengertian Seni Lukis Salah satu karya seni yang memiliki nilai jual yang tinggi sekaligus dapat membuat orang yang melihat berdecak kagum adalah seni lukis. Seni lukis tergolong sebagai karya seni rupa dua dimensi. Ditambah lagi, seni lukis memiliki karakteristis yang khas seperti corak, bahan, dan teknik dalam pengerjaannya."
+      }
+    ],
+    "Menentukan teknik": [
+      {
+        "Teknik transparan warna": "content tentang teknik transparan warna"
+      },
+      {
+        "Teknik pelekat warna": "content tentang teknik pelekat warna"
+      }
+    ]
+  },
+  "tags category": [
+    "Melukis",
+    "Digital Art"
+  ]
+}

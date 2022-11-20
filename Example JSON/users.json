@@ -1,0 +1,48 @@
+{
+  "_id": {
+    "$oid": "6376b244bd5a4c499c4ec525"
+  },
+  "name": "nam",
+  "email": "namski@mail.com",
+  "password": "$2b$10$Z7AHosVSMPBlN89qXquRY.mbmSNw8RlZgHyODiTR1wqXAAwz3J83O",
+  "role": "user",
+  "sekolah": "IAIN",
+  "tgl_lahir": "14/05/2000",
+  "jns_kelamin": "pria",
+  "kelas": {
+    "complete": [
+      "id_class_1",
+      "id_class_2"
+    ],
+    "progress": [
+      "id_class_3",
+      "id_class_4"
+    ]
+  },
+  "challenge": {
+    "complete": [
+      "id_challenge_1",
+      "id_challenge_2"
+    ],
+    "progress": [
+      "id_challenge_3",
+      "id_challenge_4"
+    ]
+  },
+  "social media": {
+    "facebook": "nova@fb",
+    "instagram": "nova@ig",
+    "other": "nova@fb.com"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1668723268655"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1668723268655"
+    }
+  },
+  "__v": 0
+}
